@@ -119,4 +119,51 @@ sudo groupadd docker
 sudo usermod -aG docker user
 ```
 
+## Instalación de NVIDIA Container Toolkit 
 
+```bash
+# Usar root
+
+# Actualizar el índice de paquetes
+sudo apt-get update
+
+# Instalar NVIDIA Container Toolkit
+sudo apt-get install -y nvidia-container-toolkit
+
+# Reiniciar el servicio de Docker para aplicar los cambios
+sudo systemctl restart docker
+```
+
+## Basecalling con seqtagger 
+
+```bash
+# Crear el directorio de trabajo y entrar en él
+mkdir -p seqtagger
+cd seqtagger
+
+# Descargar los datos de prueba de seqtagger (ignorar index.html)
+wget https://public-docs.crg.es/enovoa/public/seqtagger/test_data/ \
+    -q --show-progress -r -c -nc -np -nH --cut-dirs=3 --reject="index.html*"
+
+# Crear un alias para usar seqtagger en Docker con soporte GPU y montaje de volumen
+alias seqtagger="docker run --gpus all -u $UID:$GID -v `pwd`:/data lpryszcz/seqtagger"
+
+# Demultiplexar datos de mRNA usando seqtagger
+seqtagger mRNA -k models/b04_RNA004 -r -i /data/test_data/RNA004 -o /data/demux
+
+# Separar archivos fast5 por código de barras usando el script de seqtagger
+seqtagger fast5_split_by_barcode.py -b 50 -i /data/demux/RNA004.demux.tsv.gz -f /data/test_data/RNA004 -o /data/demux/RNA004
+```
+
+## Basecalling con master of pores 
+
+```bash
+# Clonar el repositorio master_of_pores con submódulos, solo la última versión (shallow clone)
+git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/master_of_pores.git
+
+# Entrar al directorio del repositorio
+cd master_of_pores
+
+# Ejecutar el pipeline de preprocesamiento con Nextflow, usando Singularity y archivo de parámetros personalizado
+nextflow run mop_preprocess.nf -with-singularity -params-file params.yaml -profile local
+```
