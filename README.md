@@ -134,6 +134,25 @@ sudo apt-get install -y nvidia-container-toolkit
 sudo systemctl restart docker
 ```
 
+## Instalación de dorado 
+
+```bash
+# Descargar Dorado versión 0.9.1 para Linux x64
+wget https://cdn.oxfordnanoportal.com/software/analysis/dorado-0.9.1-linux-x64.tar.gz
+
+# Descomprimir el archivo descargado
+tar xvfz dorado-0.9.1-linux-x64.tar.gz
+
+# Entrar al directorio binario de Dorado
+cd dorado-0.9.1-linux-x64/bin/
+
+# Crear un enlace simbólico para dorado en /usr/local/bin
+sudo ln -s /data/software/dorado-0.9.1-linux-x64/bin/dorado /usr/local/bin/dorado
+
+# Descargar todos los modelos disponibles de Dorado
+dorado download --model all
+```
+
 ## Basecalling con seqtagger 
 
 ```bash
