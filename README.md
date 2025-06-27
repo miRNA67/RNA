@@ -191,8 +191,11 @@ nextflow run mop_preprocess.nf -with-singularity -params-file params.yaml -profi
 
 ```bash
 conda create -n mod bioconda::ont-modkit
+```
 
+```bash
 dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_6mA.bam
+```
 
 > **Comentario:**
 > - `dorado basecaller`: Comando principal para iniciar el proceso de basecalling.
@@ -202,10 +205,12 @@ dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models
 > - `--recursive`: Si la ruta de entrada es un directorio, este parámetro asegura que Dorado buscará y procesará archivos .pod5 en todos los subdirectorios.
 > - `--models-directory /data/software/dorado-0.9.1-linux-x64/models`: Especifica la ruta donde Dorado debe buscar los modelos de basecalling.
 > - `../../pod5_raw/pod2/`: La ruta al directorio que contiene los archivos de señal cruda (.pod5) a procesar.
-> - `b02_calls_6mA.bam`: Redirige la salida estándar de Dorado a un archivo BAM llamado b02_calls_6mA.bam. Este archivo contiene las secuencias de ADN basecalled y, crucialmente, las anotaciones de las bases 6mA detectadas.
+> - `b02_calls_6mA.bam`: Redirige la salida estándar de Dorado a un archivo BAM llamado b02_calls_6mA.bam. Este archivo contiene las secuencias de DNA basecalled y, crucialmente, las anotaciones de las bases 6mA detectadas.
 
+```bash
 modkit summary b02_calls_6mA.bam --no-sampling -t 20
-
+```
+```bash
 > not subsampling, using all reads
 > calculating threshold at 10(th) percentile
 > calculated thresholds: A: 0.7792969
@@ -216,22 +221,48 @@ modkit summary b02_calls_6mA.bam --no-sampling -t 20
  base  code  pass_count  pass_frac    all_count  all_frac 
  A     -     37655526    0.98070425   40864022   0.95909375 
  A     a     740890      0.019295812  1742890    0.040906273 
-
+```
 
 
 dorado basecaller sup,5mCG_5hmCG --min-qscore 10 --device 'cuda:1' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_5mCG_5hmCG.bam
 
+modkit summary b02_calls_5mCG_5hmCG.bam --no-sampling -t 20
 
+> not subsampling, using all reads
+> calculating threshold at 10(th) percentile
+> calculated thresholds: C: 0.703125
+# bases             C 
+# total_reads_used  51912 
+# count_reads_C     51912 
+# pass_threshold_C  0.703125 
+ base  code  pass_count  pass_frac     all_count  all_frac 
+ C     -     13741517    0.99304175    15079719   0.9839272 
+ C     h     33505       0.0024212657  133551     0.008713986 
+ C     m     62782       0.0045369915  112782     0.0073588425
 
 
 
 
 dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod3/ > b03_calls_6mA.bam
 
+modkit summary b03_calls_6mA.bam --no-sampling -t 20
+
+> not subsampling, using all reads
+> calculating threshold at 10(th) percentile
+> calculated thresholds: A: 0.7792969
+# bases             A 
+# total_reads_used  52675 
+# count_reads_A     52675 
+# pass_threshold_A  0.7792969 
+ base  code  pass_count  pass_frac   all_count  all_frac 
+ A     -     37403180    0.9806967   40598074   0.9591393 
+ A     a     736217      0.01930332  1729534    0.04086066
 
 ```
 
 
+
+dorado basecaller sup,5mCG_5hmCG --min-qscore 10 --device 'cuda:1' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod3/ > b03_calls_5mCG_5hmCG.bam
 
 
 
