@@ -209,8 +209,7 @@ dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models
 
 ```bash
 modkit summary b02_calls_6mA.bam --no-sampling -t 20
-```
-```bash
+
 > not subsampling, using all reads
 > calculating threshold at 10(th) percentile
 > calculated thresholds: A: 0.7792969
@@ -222,6 +221,12 @@ modkit summary b02_calls_6mA.bam --no-sampling -t 20
  A     -     37655526    0.98070425   40864022   0.95909375 
  A     a     740890      0.019295812  1742890    0.040906273 
 ```
+> **Comentario:**
+Lecturas procesadas: Se analizaron un total de 51,915 lecturas (total_reads_used).
+Umbral de confianza: Modkit calculó un umbral de confianza de 0.7792969 para las llamadas de bases de Adenina (A). Una base 'A' se considera modificada con confianza si su probabilidad de modificación está por encima de este umbral.
+Conteo de bases:
+Adeninas canónicas (A -): De un total de 40,864,022 bases de Adenina llamadas, 37,655,526 fueron clasificadas con confianza como canónicas (no modificadas). Esto representa el 95.91% de todas las Adeninas llamadas, con el 98.07% de ellas pasando el umbral de confianza.
+Adeninas metiladas 6mA (A a): Se detectaron un total de 1,742,890 bases de Adenina modificadas con 6mA. De estas, 740,890 fueron llamadas con confianza (es decir, pasaron el umbral). Esto representa aproximadamente el 4.09% de todas las Adeninas llamadas en las lecturas, con el 1.93% de ellas pasando el umbral de confianza.
 
 
 dorado basecaller sup,5mCG_5hmCG --min-qscore 10 --device 'cuda:1' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_5mCG_5hmCG.bam
