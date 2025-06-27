@@ -194,6 +194,49 @@ conda create -n mod bioconda::ont-modkit
 ```
 
 ```bash
+dorado download --list
+
+[2025-06-26 21:16:05.192] [info]  - dna_r9.4.1_e8_sup@v3.3_5mCG@v0.1
+[2025-06-26 21:16:05.192] [info]  - dna_r9.4.1_e8_sup@v3.3_5mCG_5hmCG@v0
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_260bps_sup@v3.5.2_5mCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v3.5.2_5mCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_260bps_sup@v4.0.0_5mCG_5hmCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.0.0_5mCG_5hmCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_260bps_sup@v4.1.0_5mCG_5hmCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.1.0_5mCG_5hmCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_5mCG_5hmCG@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_5mCG_5hmCG@v3.1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_5mC@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_6mA@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_6mA@v3
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.2.0_5mC_5hmC@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.3.0_5mC_5hmC@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.3.0_6mA@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.3.0_6mA@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v4.3.0_5mCG_5hmCG@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_4mC_5mC@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_4mC_5mC@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_4mC_5mC@v3
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mC_5hmC@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mC_5hmC@v2.0.1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mC_5hmC@v3
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mCG_5hmCG@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mCG_5hmCG@v2.0.1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_5mCG_5hmCG@v3
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_6mA@v1
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_6mA@v2
+[2025-06-26 21:16:05.192] [info]  - dna_r10.4.1_e8.2_400bps_sup@v5.0.0_6mA@v3
+[2025-06-26 21:16:05.192] [info]  - rna004_130bps_sup@v3.0.1_m6A_DRACH@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.0.0_m6A@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.0.0_m6A_DRACH@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.0.0_pseU@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.1.0_m5C@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.1.0_inosine_m6A@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.1.0_m6A_DRACH@v1
+[2025-06-26 21:16:05.193] [info]  - rna004_130bps_sup@v5.1.0_pseU@v1
+```
+
+```bash
 dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_6mA.bam
 ```
 
