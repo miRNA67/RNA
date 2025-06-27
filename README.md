@@ -186,3 +186,58 @@ cd master_of_pores
 # Ejecutar el pipeline de preprocesamiento con Nextflow, usando Singularity y archivo de parámetros personalizado
 nextflow run mop_preprocess.nf -with-singularity -params-file params.yaml -profile local
 ```
+
+## DNA Basecalling test
+
+```bash
+conda create -n mod bioconda::ont-modkit
+
+dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_6mA.bam
+
+[2025-06-26 20:19:49.145] [info] Running: "basecaller" "sup,6mA" "--min-qscore" "10" "--device" "cuda:0" "--recursive" "--models-directory" "/data/software/dorado-0.9.1-linux-x64/models" "../../pod5_raw/pod2/"
+[2025-06-26 20:19:49.169] [info] > Creating basecall pipeline
+[2025-06-26 20:19:50.615] [info] Calculating optimized batch size for GPU "NVIDIA GeForce RTX 3090" and model /data/software/dorado-0.9.1-linux-x64/models/dna_r10.4.1_e8.2_400bps_sup@v5.0.0. Full benchmarking will run for this device, which may take some time.
+[2025-06-26 20:19:53.083] [info] cuda:0 using chunk size 12288, batch size 224
+[2025-06-26 20:19:53.491] [info] cuda:0 using chunk size 6144, batch size 480
+[2025-06-26 20:30:57.321] [info] > Finished in (ms): 663278
+[2025-06-26 20:30:57.322] [info] > Simplex reads basecalled: 51828
+[2025-06-26 20:30:57.322] [info] > Simplex reads filtered: 176
+[2025-06-26 20:30:57.322] [info] > Basecalled @ Samples/s: 3.741861e+06
+[2025-06-26 20:30:57.337] [info] > Finished
+
+modkit summary b02_calls_6mA.bam --no-sampling -t 16
+
+> not subsampling, using all reads
+> calculating threshold at 10(th) percentile
+> calculated thresholds: A: 0.7792969
+# bases             A 
+# total_reads_used  51915 
+# count_reads_A     51915 
+# pass_threshold_A  0.7792969 
+ base  code  pass_count  pass_frac    all_count  all_frac 
+ A     -     37655526    0.98070425   40864022   0.95909375 
+ A     a     740890      0.019295812  1742890    0.040906273 
+
+
+
+dorado basecaller sup,5mCG_5hmCG --min-qscore 10 --device 'cuda:1' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_5mCG_5hmCG.bam
+
+
+
+
+
+
+dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod3/ > b03_calls_6mA.bam
+
+
+```
+
+
+
+
+
+
+
+
+
+
