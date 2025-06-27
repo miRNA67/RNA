@@ -153,7 +153,7 @@ sudo ln -s /data/software/dorado-0.9.1-linux-x64/bin/dorado /usr/local/bin/dorad
 dorado download --model all
 ```
 
-## Basecalling con seqtagger 
+## Basecalling con seqtagger test
 
 ```bash
 # Crear el directorio de trabajo y entrar en él
@@ -174,7 +174,7 @@ seqtagger mRNA -k models/b04_RNA004 -r -i /data/test_data/RNA004 -o /data/demux
 seqtagger fast5_split_by_barcode.py -b 50 -i /data/demux/RNA004.demux.tsv.gz -f /data/test_data/RNA004 -o /data/demux/RNA004
 ```
 
-## Basecalling con master of pores 
+## Basecalling con master of pores test
 
 ```bash
 # Clonar el repositorio master_of_pores con submódulos, solo la última versión (shallow clone)
