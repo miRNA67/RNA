@@ -187,25 +187,24 @@ cd master_of_pores
 nextflow run mop_preprocess.nf -with-singularity -params-file params.yaml -profile local
 ```
 
-## DNA Basecalling test
+## DNA basecalling test
 
 ```bash
 conda create -n mod bioconda::ont-modkit
 
 dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod2/ > b02_calls_6mA.bam
 
-[2025-06-26 20:19:49.145] [info] Running: "basecaller" "sup,6mA" "--min-qscore" "10" "--device" "cuda:0" "--recursive" "--models-directory" "/data/software/dorado-0.9.1-linux-x64/models" "../../pod5_raw/pod2/"
-[2025-06-26 20:19:49.169] [info] > Creating basecall pipeline
-[2025-06-26 20:19:50.615] [info] Calculating optimized batch size for GPU "NVIDIA GeForce RTX 3090" and model /data/software/dorado-0.9.1-linux-x64/models/dna_r10.4.1_e8.2_400bps_sup@v5.0.0. Full benchmarking will run for this device, which may take some time.
-[2025-06-26 20:19:53.083] [info] cuda:0 using chunk size 12288, batch size 224
-[2025-06-26 20:19:53.491] [info] cuda:0 using chunk size 6144, batch size 480
-[2025-06-26 20:30:57.321] [info] > Finished in (ms): 663278
-[2025-06-26 20:30:57.322] [info] > Simplex reads basecalled: 51828
-[2025-06-26 20:30:57.322] [info] > Simplex reads filtered: 176
-[2025-06-26 20:30:57.322] [info] > Basecalled @ Samples/s: 3.741861e+06
-[2025-06-26 20:30:57.337] [info] > Finished
+> **Comentario:**
+> - `dorado basecaller`: Comando principal para iniciar el proceso de basecalling.
+> - `sup,6mA`: Especifica el modelo de basecalling a utilizar. En este caso, se seleccionó el modelo de "súper precisión" (sup) optimizado para la detección de 6mA.
+> - `--min-qscore 10`: Filtra las lecturas, incluyendo solo aquellas cuya calidad de basecalling (Q-score) sea igual o superior a 10. Esto asegura que solo se procesen lecturas de alta confianza.
+> - `--device 'cuda:0'`: Indica que Dorado debe usar la primera GPU (tarjeta gráfica) disponible para acelerar el procesamiento. Dorado aprovecha al máximo las GPUs para un rendimiento óptimo.
+> - `--recursive`: Si la ruta de entrada es un directorio, este parámetro asegura que Dorado buscará y procesará archivos .pod5 en todos los subdirectorios.
+> - `--models-directory /data/software/dorado-0.9.1-linux-x64/models`: Especifica la ruta donde Dorado debe buscar los modelos de basecalling.
+> - `../../pod5_raw/pod2/`: La ruta al directorio que contiene los archivos de señal cruda (.pod5) a procesar.
+> - `b02_calls_6mA.bam`: Redirige la salida estándar de Dorado a un archivo BAM llamado b02_calls_6mA.bam. Este archivo contiene las secuencias de ADN basecalled y, crucialmente, las anotaciones de las bases 6mA detectadas.
 
-modkit summary b02_calls_6mA.bam --no-sampling -t 16
+modkit summary b02_calls_6mA.bam --no-sampling -t 20
 
 > not subsampling, using all reads
 > calculating threshold at 10(th) percentile
