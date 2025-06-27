@@ -221,8 +221,9 @@ modkit summary b02_calls_6mA.bam --no-sampling -t 20
  A     -     37655526    0.98070425   40864022   0.95909375 
  A     a     740890      0.019295812  1742890    0.040906273 
 ```
+
 > **Comentario:**
-> - `Lecturas procesadas`: Se analizaron un total de 51,915 lecturas (total_reads_used).
+> - `Lecturas procesadas`: Se analizaron un total de 51,915 lecturas.
 > - `Umbral de confianza`: Modkit calculó un umbral de confianza de 0.7792969 para las llamadas de bases de Adenina (A). Una base 'A' se considera modificada con confianza si su probabilidad de modificación está por encima de este umbral.
 > - `Conteo de bases`:
 > - `Adeninas canónicas (A -)`: De un total de 40,864,022 bases de Adenina llamadas, 37,655,526 fueron clasificadas con confianza como canónicas (no modificadas). Esto representa el 95.91% de todas las Adeninas llamadas, con el 98.07% de ellas pasando el umbral de confianza.
@@ -246,6 +247,14 @@ modkit summary b02_calls_5mCG_5hmCG.bam --no-sampling -t 20
  C     m     62782       0.0045369915  112782     0.0073588425
 ```
 
+> **Comentario:**
+> - `Lecturas procesadas`: Se analizaron un total de 51,912 lecturas.
+> - `Umbral de confianza`: El umbral de confianza para las llamadas de bases de Citosina (C) se calculó en 0.703125.
+> - `Conteo de bases 5mC y 5hmC específicamente en contextos CpG`:
+> - `Citosinas canónicas (C -)`: De un total de 15,079,719 citosinas detectadas, 13,741,517 fueron clasificadas con confianza como canónicas (no modificadas). Esto representa el 98.39% de todas las citosinas, con un 99.30% de ellas pasando el umbral de confianza.
+> - `5-hidroximetilcitosina (C h)`: Se detectaron 133,551 citosinas como 5hmC. De estas, 33,505 pasaron el umbral de confianza. Esto representa aproximadamente el 0.87% del total de citosinas, con un 0.24% de ellas pasando el umbral.
+> - `5-metilcitosina (C m)`: Se identificaron 112,782 citosinas como 5mC. De estas, 62,782 pasaron el umbral de confianza. Esto constituye aproximadamente el 0.74% del total de citosinas, con un 0.45% de ellas pasando el umbral.
+
 ```bash
 dorado basecaller sup,6mA --min-qscore 10 --device 'cuda:0' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod3/ > b03_calls_6mA.bam
 
@@ -266,6 +275,20 @@ modkit summary b03_calls_6mA.bam --no-sampling -t 20
 
 ```bash
 dorado basecaller sup,5mCG_5hmCG --min-qscore 10 --device 'cuda:1' --recursive --models-directory /data/software/dorado-0.9.1-linux-x64/models ../../pod5_raw/pod3/ > b03_calls_5mCG_5hmCG.bam
+
+modkit summary b03_calls_5mCG_5hmCG.bam --no-sampling -t 20
+
+> not subsampling, using all reads
+> calculating threshold at 10(th) percentile
+> calculated thresholds: C: 0.7050781
+# bases             C 
+# total_reads_used  52674 
+# count_reads_C     52674 
+# pass_threshold_C  0.7050781 
+ base  code  pass_count  pass_frac     all_count  all_frac 
+ C     -     13630460    0.9931816     15008306   0.98425376 
+ C     h     32887       0.0023963067  130178     0.008537152 
+ C     m     60689       0.0044220956  109927     0.007209079
 ```
 
 
